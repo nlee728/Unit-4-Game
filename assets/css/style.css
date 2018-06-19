@@ -1,1 +1,21 @@
+body {
+    text-align: center;
+}
 
+.jumbotron {
+    background-image: url("../images/cave.jpg");
+    border-bottom: 15px solid darkmagenta;
+    height: 250px;
+    color: white;
+}
+
+.display-4 {
+    font-family: 'Condiment', cursive;
+    font-size: 100px;
+}
+
+#tally {
+    border: 3px solid black;
+    background-color: plum;
+    width: 350px;
+}

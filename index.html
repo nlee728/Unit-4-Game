@@ -9,20 +9,36 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Condiment" rel="stylesheet">
   </head>
   <body>
 
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">Crystals Collector</h1>
-        <p class="lead">Match the target number!</p>
+        <h6 class="lead">Number to Guess: <span id="number-to-guess"></span></h6>
+      </div>
       </div>
 
-    <div id="game">
-      <p>Wins: <div id="win-count"></div></p>
-      <p>Losses: <div id="loss-count"></div></p>
-      <p>Guesses Left: <div id="guesses-left"></div></p>
-      <p>Your Guesses So Far: <div id="guesses-so-far"></div></p>
+      <div id="crystals">
+      </div>
+
+      <div class="container">
+      <div id="rules">
+        <strong><h6>Score: <span id="counter"></span></h6></strong>
+        <p>Rules: You will be given a random number at the start of the game.</p>
+        <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+        <p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.</p>
+        <p>The value of each crystal is hidden from your until you click on it.</p>
+        <p>Each time the game starts, the game will change the values of each crystal.</p>
+    </div>
+
+      <div id="tally">
+      <p>Wins: <div id="win-counter"></div></p>
+      <p>Losses: <div id="loss-counter"></div></p>
+      </div>
 
 
     <!-- Optional JavaScript -->

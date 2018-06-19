@@ -1,55 +1,76 @@
-//defines the global variables
-var letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var wins = 0;
-var losses = 0;
-var guesses = 15;
-var guessesSoFar = [];
 
-//computer chooses a random letter
-var computerChoice = letter[Math.floor(Math.random() * letter.length)];
-//Test to see the computer choice
-console.log("Correct Letter: " + computerChoice);
+  $(document).ready(function() {
 
-function reset() {
-    computerChoice = letter[Math.floor(Math.random() * letter.length)];
-            console.log("Correct Letter: " + computerChoice);
-            guesses = 15;
-            guessesSoFar = [];
-}
+  var targetNumber = Math.floor(Math.random()*120+19);   
+  
+  $("#number-to-guess").text(targetNumber);
 
+  var counter = 0;
 
-// game begins when user presses a key (also converts upper case to lower case)
-document.onkeyup = function (userClick) {
-    var userGuess = userClick.key.toLowerCase();
+  //Wins and losses counters
+  var wins = 0;
+  var losses = 0;
 
-    // game begins only if the user presses a letter key
-    if (letter.includes(userGuess)) {
-        guessesSoFar.push(userGuess);
+  // We begin by expanding our array to include four options.
+  var num1 = Math.floor(Math.random()*11+1);
+  var num2 = Math.floor(Math.random()*11+1);
+  var num3 = Math.floor(Math.random()*11+1);
+  var num4 = Math.floor(Math.random()*11+1);
 
-        //if user guesses correctly, add a win and choose a new letter
-        if (userGuess === computerChoice) {
-            wins += 1;
-            alert("Wow! You truly are psychic!");
-            reset();
-        }
+  var numberOptions = [num1, num2, num3, num4]; 
 
-    
-        //if user guesses incorrectly, remove one from guesses remaining
-        else {
-            guesses -= 1;
+  // Next we create a for loop to create crystals for every numberOption.
+  for (var i = 0; i < numberOptions.length; i++) {
 
-            //when no more guesses are left, the user loses and choose a new letter
-            if (guesses < 1){
-                losses++;
-                alert("Hmmm, maybe you aren't psychic after all..." );
-                reset();
-            }
-        }
+    // For each iteration, we will create an imageCrystal
+    var imageCrystal = $("<img>");
+
+    // First each crystal will be given the class ".crystal-image".
+    imageCrystal.addClass("crystal-image");
+
+    // Each imageCrystal will be given a src link to the crystal image
+    imageCrystal.attr("src", "assets/images/crystal.png");
+
+    // Each imageCrystal will be given a data attribute called data-crystalValue.
+    // This data attribute will be set equal to the array value.
+    imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+
+    // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
+    $("#crystals").append(imageCrystal);
+  }
+
+  // The click event applies to every single crystal on the page.
+  $(".crystal-image").on("click", function() {
+
+    // Determining the crystal's value requires us to extract the value from the data attribute.
+    // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
+    // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
+    // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
+
+    var crystalValue = ($(this).attr("data-crystalvalue"));
+    crystalValue = parseInt(crystalValue);
+    // We then add the crystalValue to the user's "counter" which is a global variable.
+    // Every click, from every crystal adds to the global counter.
+    counter += crystalValue;
+    console.log(crystalValue);
+
+    $("#counter").text(counter);
+
+    // All of the same game win-lose logic applies. So the rest remains unchanged.
+        if (counter === targetNumber) {
+        wins += 1;
+        $("#win-counter").text(wins);
+        alert("You win!");
     }
-    //show the counter variables in the html 
-    document.getElementById("win-count").innerHTML = wins;
-    document.getElementById("loss-count").innerHTML = losses;
-    document.getElementById("guesses-left").innerHTML = guesses;
-    document.getElementById("guesses-so-far").innerHTML = guessesSoFar;
 
-}
+    else if (counter >= targetNumber) {
+        losses +=1;
+        $("#loss-counter").text(losses);
+        alert("You lose!!");
+    }
+
+  });
+
+});
+
+ 
