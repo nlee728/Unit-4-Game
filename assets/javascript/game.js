@@ -19,7 +19,7 @@
 
   function randomNumbers() {
       for (var i = 0; i < 4; i++) {
-          var num = Math.floor(Math.random() * 13 + 1);
+          var num = Math.floor(Math.random() * 12) + 1;
           numberOptions.push(num);
           console.log(numberOptions);
       }
@@ -33,16 +33,15 @@
     counter = 0;
     $("#counter").text(counter);
     //Choose new random target number
-    targetNumber = Math.floor(Math.random()* 120 + 19);
+    targetNumber = Math.floor(Math.random()* 120) + 19;
     $('#number-to-guess').text(targetNumber);
     //Reset random crystal values
-    //$("#crystals").empty();
     console.log(numberOptions);
     numberOptions = [];
-    $('#crystals').empty();
-    console.log(numberOptions);
+   $('#crystals').empty();
+    // console.log(numberOptions);
     randomNumbers();
-    console.log(numberOptions);
+    // console.log(numberOptions);
     createCrystals();
   }
 
@@ -58,8 +57,8 @@
 }
 
   // The click event applies to every crystal on the page.
-  $(".crystal-image").on("click", function() {
-
+  $(document).on("click", ".crystal-image", function() {
+    // console.log("click");
     var crystalValue = ($(this).attr("data-crystalvalue"));
     crystalValue = parseInt(crystalValue);
     
