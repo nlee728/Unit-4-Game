@@ -3,7 +3,7 @@ body {
 }
 
 .jumbotron {
-    background-image: url("../images/cave.jpg");
+    background-color:grey;
     border-bottom: 15px solid darkmagenta;
     height: 250px;
     color: white;
